@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire de contact en Django | faizdev</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      {% if name %}
+        Merci {{ name }}, nous avons reçu votre message
+      {% else %}
+        Envoyez-nous un message
+      {% endif %}
+    </header>
+    
+    {% if name %}
+    <div class="response">😊 Nous vous répondrons très prochainement à l'adresse e-mail suivante : {{ email }}.</div> 
+    {% else %}  
+    <form  method="POST" action="{% url 'contact' %}" >
+      {% csrf_token %}
+      <div class="dbl-field">
+        <div class="field">
+          <input type="text" name="name" placeholder="Entrez votre nom" required>
+          <i class='fas fa-user'></i>
+        </div>
+        <div class="field">
+          <input type="email" name="email" placeholder="Entrez votre adresse e-mail" required>
+          <i class='fas fa-envelope'></i>
+        </div>
+      </div>
+      <div class="dbl-field">
+        <div class="field">
+          <input type="number" name="phone" placeholder="Entrez votre numéro de téléphone" required>
+          <i class='fas fa-phone-alt'></i>
+        </div>
+        <div class="field">
+          <input type="text" name="website" placeholder="Entrez votre site web" required>
+          <i class='fas fa-globe'></i>
+        </div>
+      </div>
+      <div class="message">
+        <textarea placeholder="Écrivez votre message" name="message" required></textarea>
+        <i class="material-icons">message</i>
+      </div>
+      <div class="button-area">
+        <button type="submit">Envoyer le message</button>
+        <span></span>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+ 
+  <!-- {% if name %}
+  <script>
+    console.log("Nom: {{ name }}\nEmail: {{ email }}\nTéléphone: {{ phone }}\nSite Web: {{ website }}\nMessage: {{ message }}");
+  </script>
+  {% endif %} -->
+</body>
+</html>
