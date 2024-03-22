@@ -28,7 +28,7 @@ def contact_view(request):
             subject,
             body,
             email,  # Email de l'envoyeur
-            ['savagedeveloppement@gmail.com'],  # Adresse e-mail destinataire
+            ['tonemail@gmail.com'],  # Adresse e-mail destinataire
         )
 
         # Rediriger vers une page de confirmation après avoir traité le formulaire
